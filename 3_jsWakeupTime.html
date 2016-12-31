@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #outerShell {
+      position: absolute;
+      background: darkgrey;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 40%;
+      height: 30%;
+    }
+
+    #innerShell {
+      position: absolute;
+      background: black;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 90%;
+      height: 90%;
+    }
+
+    #clockScreen {
+      position: absolute;
+      background: rgb(211,45,30);
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 70%;
+      height: 70%;
+    }
+
+    #timeElem {
+      position: absolute;
+      margin: auto;
+      top: 20%;
+      right: 0;
+      bottom: 0;
+      left: -1%;
+      width: 65%;
+      height: 65%;
+      color:white;
+      text-align: center;
+      font-size: 16vh;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+
+      var outerShell = $("<div id='outerShell'>");
+      var innerShell = $("<div id='innerShell'>");
+      var clockScreen = $("<div id='clockScreen'>");
+      var timeElem = $('<div id="timeElem"></div>');
+
+      var pm = false;
+
+
+      var digitfix = function(){
+        if (mins < 10) {
+          return "0" + mins;
+        } else {
+          return mins;
+        }
+      }
+
+    function printTime() {
+      
+      now = new Date();
+      hours = now.getHours();
+      mins = now.getMinutes();
+      seconds = now.getSeconds();
+
+      if (hours < 12) {
+        pm = false;
+        console.log(pm)
+      } else {
+        pm = true;
+
+      }
+
+
+      // if(pm === false){
+      //   $(AMPMindicator).removeClass("IndicatorPM");
+      //   $(AMPMindicator).addClass("IndicatorAM");
+      // } else {
+      //   $(AMPMindicator).removeClass("IndicatorAM");
+      //   $(AMPMindicator).addClass("IndicatorPM");
+      // }
+
+      $("#timeElem").text(hours + ":" + digitfix());
+    }
+
+      setInterval(printTime, 1000);
+
+
+      
+      outerShell.append(innerShell);
+      outerShell.append(clockScreen);
+      outerShell.append(timeElem);
+      $("#container").append(outerShell);
+    })
+    
+  </script>
+</body>
+</html>

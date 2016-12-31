@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    html, body {
+      background: darkgrey;
+      margin:0;
+      height: 100%
+    }
+
+    .person-type {
+      background: white;
+      height:70%;
+      width: 49%;
+      margin: 0.5%;
+      float: left;
+      border-radius: 30px;
+      outline:10px solid darkgrey;
+      overflow: scroll;
+    }
+
+    #disasterForm {
+      background: black;
+      position: absolute;
+      bottom: 6%; 
+      width: 300px;
+      height: 120px;
+      color:white;
+      margin-left: 100px;
+    }
+
+    #disasterForm div{
+      margin: 10px 0 0 25px;
+    }
+
+    #disasterForm input{
+      position: absolute;
+      width: 120px;
+      right:30px;
+    }
+
+    #register {
+      position: absolute;
+      bottom: 5%;
+      left: 500px;
+    }
+
+    #finalize {
+      position: absolute;
+      bottom: 5%;
+      left: 800px;
+    }
+
+    .contactBlock {
+      margin: 20px;
+      background: orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="person-type victim-space"></div>
+  <div class="person-type volunteer-space"></div>
+  <div id="disasterForm">
+    <div><label for="fullnameField">Full Name: </label><input id="fullnameField" type="text" /></div>
+    <div><label for="phonenumField">Phone Number: </label><input id="phonenumField" type="text" /></div>
+    <div><label for="addressField">Address: </label><input id="addressField" type="text" /></div>
+    <div><label for="isVolunteer">Volunteer?: </label><input id="isVolunteer" type="checkbox" /></div>
+  </div>
+  <button id="register">register</button>
+  <button id="finalize">finalize</button>
+
+  <script>
+    document.getElementById("register").onclick = function(){
+      var theD = document.createElement("div");
+      theD.className = "contactBlock";
+      theD.innerHTML += "<h3>" + document.getElementById("fullnameField").value + "</h3>" +
+                           "<h3>" + document.getElementById("phonenumField").value + "</h3>" +
+                           "<h3>" + document.getElementById("addressField").value + "</h3>" +
+                           "<h3>" + document.getElementById("isVolunteer").value + "</h3>";
+      if(document.getElementById("isVolunteer").checked){
+        document.querySelector(".volunteer-space").appendChild(theD);
+      }else{
+        document.querySelector(".victim-space").appendChild(theD);
+      }
+    };
+  </script>
+</body>
+</html>
